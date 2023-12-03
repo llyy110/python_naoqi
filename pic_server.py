@@ -6,7 +6,7 @@ import random
 
 app = fastapi.FastAPI()
 
-
+地方干部v
 def get_pic():
     root_path = r"Y:\work\naoqi_task\pic_datas"
     pic_datas_ = os.listdir(root_path)
