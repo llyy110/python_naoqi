@@ -11,7 +11,6 @@ def get_pic_remote(pic_data_name):
     return m
 
 
-
 def get_random_remote():
     pic_data_names = os.listdir(pic_data_dir)
     random_name = random.choice(pic_data_names)
