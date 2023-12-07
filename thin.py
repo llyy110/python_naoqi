@@ -73,12 +73,12 @@ for filename in os.listdir(pic_list):
                 f.write(str(int((255 - (im2.getpixel((w, h)))) / 255)))
                 if w == width - 1:
                     f.write("\n")
+                if h == 30 and int((255 - (im2.getpixel((w, h)))) / 255) == 0:
+                    p.append(w)
                 if h == 120 and int((255 - (im2.getpixel((w, h)))) / 255) == 0:
                     print(w, h)
-                    p.append(w)
-                if h == 220 and w > 10 and int((255 - (im2.getpixel((w, h)))) / 255) == 0:
                     pp.append(w)
-                if h == 30 and int((255 - (im2.getpixel((w, h)))) / 255) == 0:
+                if h == 220 and w > 10 and int((255 - (im2.getpixel((w, h)))) / 255) == 0:
                     ppp.append(w)
                 if int((255 - (im2.getpixel((w, h)))) / 255) == 0:
                     # print(w, h)
@@ -90,9 +90,30 @@ for filename in os.listdir(pic_list):
             #
             # kh[lw] = h
 
-        cv.line(img1, ((sum(p))//(len(p)), 120), (160, 240), (255, 255, 0), 1)
+        # cv.line(img1, ((sum(p))//(len(p)), 120), (160, 240), (255, 255, 0), 1)
+
+        cv.line(img1, ((sum(pp))//(len(pp)), 120), ((sum(p))//(len(p)), 0), (255, 255, 0), 1)
+        cv.line(img1, ((sum(p))//(len(p)), 120), ((sum(pp))//(len(pp)), 240), (255, 255, 0), 1)
+        # cv.line(img1, ((sum(p))//(len(p)), 120), (160, 240), (255, 255, 0), 1)
         cv.imshow(filename + '3', img1)
 
+
+        if len(p) == 3 and len(pp) == 0:
+            cv.line(img1, ((pp[0]+pp[1]) // 2, 120), ((pp[0]+pp[1]) // 2, 0), (255, 255, 0), 1)
+            cv.line(img1, ((sum(p)) // (len(p)), 120), (240, 240), (255, 255, 0), 1)
+
+
+
+            else:
+                cv.line(img1, ((sum(p)) // (len(p)), 120), ((ppp[0]+ppp[1]) // 2, 0), (255, 255, 0), 1)
+                cv.line(img1, ((sum(p)) // (len(p)), 120), ((sum(pp)) // (len(pp)), 240), (255, 255, 0), 1)
+        else:
+            if len(pp) == 0:
+                cv.line(img1, ((sum(p)) // (len(p)), 120), ((sum(ppp)) // (len(ppp)), 0), (255, 255, 0), 1)
+                cv.line(img1, ((sum(p)) // (len(p)), 120), (240, 240), (255, 255, 0), 1)
+            else:
+                cv.line(img1, ((sum(p)) // (len(p)), 120), ((ppp[0]+ppp[1]) // 2, 0), (255, 255, 0), 1)
+                cv.line(img1, ((sum(p)) // (len(p)), 120), ((sum(pp)) // (len(pp)), 240), (255, 255, 0), 1)
         print (pp)
         if len(ppp) == 3:
             print (filename)
