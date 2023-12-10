@@ -1,7 +1,7 @@
-# coding=utf-8
+# -*- coding: utf-8 -*-
 from naoqi import ALProxy
 
-IP = "192.168.1.107"  # 机器人的IP地址
+IP = "192.168.1.119"  # 机器人的IP地址
 PORT = 9559           # 机器人的端口号，默认9559
 ttsProxy = ALProxy("ALTextToSpeech", IP, PORT)
 
