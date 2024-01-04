@@ -62,6 +62,7 @@ for filename in os.listdir(pic_list):
     p = []
     pp = []
     ppp = []
+    p4 = []
     pic_list_01 = 'C:/Users/35472/naoqi/010101/'
     file_path = os.path.join(pic_list_01, filename + '.txt')
     with open(file_path, 'w') as f:
@@ -73,13 +74,15 @@ for filename in os.listdir(pic_list):
                 f.write(str(int((255 - (im2.getpixel((w, h)))) / 255)))
                 if w == width - 1:
                     f.write("\n")
+                if h == 35 and int((255 - (im2.getpixel((w, h)))) / 255) == 0:
+                    p.append(w)
                 if h == 120 and int((255 - (im2.getpixel((w, h)))) / 255) == 0:
                     print(w, h)
-                    p.append(w)
-                if h == 220 and w > 10 and int((255 - (im2.getpixel((w, h)))) / 255) == 0:
                     pp.append(w)
-                if h == 30 and int((255 - (im2.getpixel((w, h)))) / 255) == 0:
+                if h == 215 and w > 10 and int((255 - (im2.getpixel((w, h)))) / 255) == 0:
                     ppp.append(w)
+                if h == 55 and int((255 - (im2.getpixel((w, h)))) / 255) == 0:
+                    p4.append(w)
                 if int((255 - (im2.getpixel((w, h)))) / 255) == 0:
                     # print(w, h)
                     lw = max(w, lw)
@@ -90,23 +93,60 @@ for filename in os.listdir(pic_list):
             #
             # kh[lw] = h
 
-        # cv.line(img1, ((sum(p))//(len(p)), 120), (160, 240), (255, 255, 0), 1)
+        #
+        # # cv.line(img1, ((sum(p))//(len(p)), 120), (160, 240), (255, 255, 0), 1)
+        #
+        # cv.line(img1, ((sum(p))//(len(p)), 120), ((sum(ppp))//(len(ppp)), 0), (255, 255, 0), 1)
+        # cv.line(img1, ((sum(p))//(len(p)), 120), ((sum(pp))//(len(pp)), 240), (255, 255, 0), 1)
+        # # cv.line(img1, ((sum(p))//(len(p)), 120), (160, 240), (255, 255, 0), 1)
+        print("fghjkjhgfd")
+        print(p4)
+        print("fghjkjhgfd")
+        # if len(ppp) == 1 and len(pp) == 2 and pp[0] <= 90:
+        #     cv.line(img1, (85, 120), (80, 0), (255, 255, 0), 1)
+        #     cv.line(img1, (85, 120), (160, 240), (255, 255, 0), 1)
+        #
+        # else:
+        if len(p4) == 3:
+            cv.line(img1, (85, 120), (80, 0), (255, 255, 0), 1)
+            cv.line(img1, (85, 120), (160, 240), (255, 255, 0), 1)
+        else:
+            if len(p) == 3 or len(pp) == 3 or len(ppp) == 3:
+                cv.line(img1, ((sum(pp)) // (len(pp)), 120), (80, 0), (255, 255, 0), 1)   #
+                cv.line(img1, ((sum(pp)) // (len(pp)), 120), (160, 240), (255, 255, 0), 1)
+            # elif len(p) == 2 and len(ppp) == 2 and len(pp) != 3 and p[0] <= 100 and ppp[1] >= 265:
+            #     cv.line(img1, (85, 120), (80, 0), (255, 255, 0), 1)
+            #     cv.line(img1, (85, 120), (160, 240), (255, 255, 0), 1)
+            elif len(p) == 2:
+                cv.line(img1, ((sum(pp))//(len(pp)), 120), ((sum(p))//(len(p)), 0), (255, 255, 0), 1)
+                if len(ppp) == 2:
+                    cv.line(img1, ((sum(pp)) // (len(pp)), 120), (160, 240), (255, 255, 0), 1)
+                elif len(ppp) == 1:
+                    cv.line(img1, ((sum(pp)) // (len(pp)), 120), (160, 240), (255, 255, 0), 1)
+                else:
+                    if pp[0] <= 90:
+                        cv.line(img1, ((sum(pp)) // (len(pp)), 120), (160, 240), (255, 255, 0), 1)
+                    else:
+                        cv.line(img1, ((sum(pp)) // (len(pp)), 120), (240, 240), (255, 255, 0), 1)
 
-        cv.line(img1, ((sum(p))//(len(p)), 120), ((sum(ppp))//(len(ppp)), 0), (255, 255, 0), 1)
-        cv.line(img1, ((sum(p))//(len(p)), 120), ((sum(pp))//(len(pp)), 240), (255, 255, 0), 1)
+        pic_list_33 = "C:/Users/35472/naoqi/img_line_list"
+        file_path33 = os.path.join(pic_list_33, filename + '.jpg')
+        cv.imwrite(file_path33, img1)
+
         # cv.line(img1, ((sum(p))//(len(p)), 120), (160, 240), (255, 255, 0), 1)
         cv.imshow(filename + '3', img1)
 
-        print (pp)
-        if len(ppp) == 3:
+        print (ppp)
+
+        if len(p) == 3:
             print (filename)
             print ('中间线为中线')
         else:
-            if len(pp) == 2:
-                lpp = abs(160 - pp[0])
-                rpp = abs(160 - pp[1])
-                print (lpp, rpp)
-                if lpp > rpp:
+            if len(ppp) == 2:
+                lppp = abs(160 - ppp[0])
+                rppp = abs(160 - ppp[1])
+                print (lppp, rppp)
+                if lppp > rppp:
                     print (filename)
                     print ('右线为中线')
                 else:
