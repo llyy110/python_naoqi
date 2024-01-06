@@ -1,11 +1,12 @@
-from fastapi
+# -*- coding: utf-8 -*-
 import pickle
-
+from naoqi import ALProxy
 import os
 import sys
 import random
+from fastapi
 
-app = fastapi.FastAPI()
+app = FastAPI()
 
 #sdfghnbvc
 def get_pic():
@@ -27,3 +28,20 @@ if __name__ == '__main__':
     import uvicorn
 
     uvicorn.run(app, host="192.168.12.15", port=8001)
+
+
+
+
+
+IP = "192.168.1.107"  # 机器人的IP地址
+PORT = 9559           # 机器人的端口号，默认9559
+ttsProxy = ALProxy("ALTextToSpeech", IP, PORT)
+
+
+def sayHi():
+    ttsProxy.say("你好")
+
+
+if __name__ == '__main__':
+    sayHi()
+
