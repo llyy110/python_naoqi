@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 import sys
 import threading
+from naoqi import ALProxy
 import time
 
 # import almath
@@ -13,7 +14,12 @@ def main(ip):
     """
     # Get the service ALBehaviorManager.
 
+    tts1 = ALProxy("ALTextToSpeech", "192.168.3.126", 9559)
+    # TTS1 = ALProxy("ALMotion", "192.168.1.114", 9559)
+    tts1.setLanguage("Chinese")
+
     session = qi.Session()
+
     try:
         session.connect("tcp://" + ip + ":" + str(9559))
     except RuntimeError:
@@ -25,17 +31,35 @@ def main(ip):
     # launchAndStopBehavior(behavior_mng_service, 'untitled-60b53b/behavior_1')
     # defaultBehaviors(behavior_mng_service, behavior_name)
     # behavior_mng_service.stopBehavior('taichidance/behavior_1')
-    #太极五
+
+    # 太极五
     behavior_mng_service.runBehavior('taichidance', _async=True)
-    time.sleep(60)
-    #misterfunk舞蹈
+
+    time.sleep(4)
+    tts1.say("老师们好，欢迎老师们到来，接下来，我们将为大家带来太极舞表演，"
+             "由我来介绍太极舞，太极舞蹈是一种独特的舞蹈形式，它巧妙地将太极的哲学"
+             "思想与舞蹈的优雅韵律相结合。舞者以柔和连贯的动作，"
+             "表达太极的阴阳平衡与和谐之美，展现出一种内敛而深邃的艺术魅力。"
+             "太极舞蹈不仅具有健身养生的功效，还能陶冶情操，提升人的气质与修养。")
+
+    """
+    
+             "回忆可以使人欢欣，但有的也不免使人寂寞，但唯有痛苦不能使人忘却，"
+             "这便是呐喊一书的来由。但何为痛苦的记忆，是父亲生命垂危时药石无医的无奈，"
+    """
+
+    # tts1.stop("192.168.3.126")
+    tts1.stopAll()
+
+    time.sleep(20)
+
+    # misterfunk舞蹈
     # behavior_mng_service.runBehavior('misterfunk', _async=True)
 
     # 停止太极五
     behavior_mng_service.stopBehavior('taichidance')
     # 停止misterfunk
     # behavior_mng_service.stopBehavior('misterfunk')
-
 
     # behavior_mng_service.runBehavior('untitled-60b53b/behavior_1')
 
@@ -52,6 +76,7 @@ def getBehaviors(behavior_mng_service):
     names = behavior_mng_service.getRunningBehaviors()
     print("Running behaviors:")
     print(names)
+
 
 def launchAndStopBehavior(behavior_mng_service, behavior_name):
     """
@@ -87,6 +112,7 @@ def launchAndStopBehavior(behavior_mng_service, behavior_name):
     print ("Running behaviors:")
     print (names)
 
+
 def defaultBehaviors(behavior_mng_service, behavior_name):
     """
     Set a behavior as default and remove it from default behavior.
@@ -119,10 +145,14 @@ if __name__ == "__main__":  # 定义三台机器人的IP地址和端口号
     robot2_port = 9559
     robot3_ip = "192.168.3.125"
     robot3_port = 9559
+    robot4_ip = "192.168.3.121"
+    robot4_port = 9559
     thread1 = threading.Thread(target=main, args=(robot1_ip,))  # 启动线程
     thread2 = threading.Thread(target=main, args=(robot2_ip,))
     thread3 = threading.Thread(target=main, args=(robot3_ip,))
+    thread4 = threading.Thread(target=main, args=(robot4_ip,))
     thread1.start()
     thread2.start()
     thread3.start()
+    thread4.start()
     # # main(robot3_ip)
