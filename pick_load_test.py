@@ -2,7 +2,7 @@ import pickle
 import os
 import random
 
-pic_data_dir = 'C:/Users/35472/naoqi/pic_datas'
+pic_data_dir = 'C:/Users/35472/naoqifile/naoqi/pic_datas'
 
 
 def get_pic_remote(pic_data_name):

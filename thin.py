@@ -10,7 +10,6 @@ from PIL import Image
 lh = 0
 lw = 0
 
-
 pic_list = 'C:/Users/35472/naoqi/pic_datas'
 
 for filename in os.listdir(pic_list):
@@ -18,7 +17,7 @@ for filename in os.listdir(pic_list):
         l = pickle.load(f)
     m = l[6]
     img = np.frombuffer(m, dtype=np.uint8)
-    print (len(img))
+    print(len(img))
     img1 = img.reshape(240, 320)
     img_zhong = cv.medianBlur(img1, 19)
     shuang = cv.bilateralFilter(img_zhong, d=0, sigmaColor=30, sigmaSpace=20)
@@ -57,7 +56,7 @@ for filename in os.listdir(pic_list):
     im2 = im.convert('1')
 
     width, height = im2.size
-    print (width, height)
+    print(width, height)
     i = 0
     p = []
     pp = []
@@ -112,13 +111,13 @@ for filename in os.listdir(pic_list):
             cv.line(img1, (85, 120), (160, 240), (255, 255, 0), 1)
         else:
             if len(p) == 3 or len(pp) == 3 or len(ppp) == 3:
-                cv.line(img1, ((sum(pp)) // (len(pp)), 120), (80, 0), (255, 255, 0), 1)   #
+                cv.line(img1, ((sum(pp)) // (len(pp)), 120), (80, 0), (255, 255, 0), 1)  #
                 cv.line(img1, ((sum(pp)) // (len(pp)), 120), (160, 240), (255, 255, 0), 1)
             # elif len(p) == 2 and len(ppp) == 2 and len(pp) != 3 and p[0] <= 100 and ppp[1] >= 265:
             #     cv.line(img1, (85, 120), (80, 0), (255, 255, 0), 1)
             #     cv.line(img1, (85, 120), (160, 240), (255, 255, 0), 1)
             elif len(p) == 2:
-                cv.line(img1, ((sum(pp))//(len(pp)), 120), ((sum(p))//(len(p)), 0), (255, 255, 0), 1)
+                cv.line(img1, ((sum(pp)) // (len(pp)), 120), ((sum(p)) // (len(p)), 0), (255, 255, 0), 1)
                 if len(ppp) == 2:
                     cv.line(img1, ((sum(pp)) // (len(pp)), 120), (160, 240), (255, 255, 0), 1)
                 elif len(ppp) == 1:
@@ -136,25 +135,25 @@ for filename in os.listdir(pic_list):
         # cv.line(img1, ((sum(p))//(len(p)), 120), (160, 240), (255, 255, 0), 1)
         cv.imshow(filename + '3', img1)
 
-        print (ppp)
+        print(ppp)
 
         if len(p) == 3:
-            print (filename)
-            print ('中间线为中线')
+            print(filename)
+            print('中间线为中线')
         else:
             if len(ppp) == 2:
                 lppp = abs(160 - ppp[0])
                 rppp = abs(160 - ppp[1])
-                print (lppp, rppp)
+                print(lppp, rppp)
                 if lppp > rppp:
-                    print (filename)
-                    print ('右线为中线')
+                    print(filename)
+                    print('右线为中线')
                 else:
-                    print (filename)
-                    print ('左线为中线')
+                    print(filename)
+                    print('左线为中线')
             else:
-                print (filename)
-                print ('中间线为中线')
+                print(filename)
+                print('中间线为中线')
         # aa = sum(pp)//(len(pp))
     cv.waitKey(0)
     cv.destroyAllWindows()

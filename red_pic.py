@@ -7,10 +7,10 @@ import numpy as np
 from skimage import morphology
 from PIL import Image
 
-pic_list = 'C:/Users/35472/naoqi/pic_datas'
+pic_list = 'C:/Users/35472/naoqifile/pic_datas'
 
 for filename in os.listdir(pic_list):
-    with open(os.path.join(pic_list, filename), 'r') as f:
+    with open(os.path.join(pic_list, filename), 'rb') as f:
         l = pickle.load(f)
     m = l[6]
     img = np.frombuffer(m, dtype=np.uint8)

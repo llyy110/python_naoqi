@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import pickle
-from naoqi import ALProxy
+from naoqifengzhuang import ALProxy
 import os
 import sys
 import random
