@@ -33,7 +33,7 @@ def main(motion):
 if __name__ == '__main__':
     config = [["MaxStepX", 0.16], ["MaxStepY", 0.16], ["MaxStepTheta", 0.5270], ["StepHeight", 0.015],
               ["MaxStepFrequency", 1]]
-    motion = ALProxy("ALMotion", '192.168.3.121', 9559)
+    motion = ALProxy("ALMotion", '192.168.3.122', 9559)
     motion.post.moveTo(0.2, 0, -3.0, config)
     time.sleep(7)
     motion.post.moveTo(2, 0, -0.0006, config)
