@@ -56,7 +56,7 @@ def main(ip):
     # # tts1.stop("192.168.3.126")
     # tts1.stopAll()
     #
-    time.sleep(45)
+    time.sleep(50)
 
     # misterfunk舞蹈
     # behavior_mng_service.runBehavior('misterfunk', _async=True)
