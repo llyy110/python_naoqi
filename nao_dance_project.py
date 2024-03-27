@@ -155,14 +155,14 @@ if __name__ == "__main__":  # 定义三台机器人的IP地址和端口号
     robot2_port = 9559
     robot3_ip = "192.168.3.121"
     robot3_port = 9559
-    robot4_ip = "192.168.3.125"
-    robot4_port = 9559
+    # robot4_ip = "192.168.3.125"
+    # robot4_port = 9559
     thread1 = threading.Thread(target=main, args=(robot1_ip,))  # 启动线程
     thread2 = threading.Thread(target=main, args=(robot2_ip,))
     thread3 = threading.Thread(target=main, args=(robot3_ip,))
-    thread4 = threading.Thread(target=main, args=(robot4_ip,))
+    # thread4 = threading.Thread(target=main, args=(robot4_ip,))
     thread1.start()
     thread2.start()
     thread3.start()
-    thread4.start()
+    # thread4.start()
     # # main(robot3_ip)
